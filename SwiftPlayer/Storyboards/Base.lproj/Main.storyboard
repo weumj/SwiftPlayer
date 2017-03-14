@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MWC-GZ-EpR">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Track Table View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" userLabel="Track Table View Controller" customClass="TrackTableViewController" customModule="SwiftPlayer" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="zmA-Mw-MFj" userLabel="Table View" customClass="TrackTableViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackTableViewCell" rowHeight="200" id="gb2-4X-kmw" customClass="TrackTableViewCell" customModule="SwiftPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gb2-4X-kmw" id="Fd1-EI-VtH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VW4-GT-WCE" userLabel="imageCover">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+                                        </imageView>
+                                        <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMF-NT-P6f" userLabel="imageOverlay">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_play" translatesAutoresizingMaskIntoConstraints="NO" id="Iyz-b8-m58" userLabel="btnPlay">
+                                            <rect key="frame" x="113" y="25" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Iyz-b8-m58" secondAttribute="height" multiplier="1:1" id="OFg-kP-XFW"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="VW4-GT-WCE" secondAttribute="trailing" id="0Kh-My-n4k"/>
+                                        <constraint firstItem="GMF-NT-P6f" firstAttribute="leading" secondItem="Fd1-EI-VtH" secondAttribute="leading" id="9rq-Zr-btC"/>
+                                        <constraint firstItem="Iyz-b8-m58" firstAttribute="centerX" secondItem="Fd1-EI-VtH" secondAttribute="centerX" id="Egl-I9-9iI"/>
+                                        <constraint firstItem="VW4-GT-WCE" firstAttribute="top" secondItem="Fd1-EI-VtH" secondAttribute="top" id="a8U-L8-0gC"/>
+                                        <constraint firstItem="Iyz-b8-m58" firstAttribute="centerY" secondItem="Fd1-EI-VtH" secondAttribute="centerY" id="q7R-ku-dCU"/>
+                                        <constraint firstAttribute="bottom" secondItem="VW4-GT-WCE" secondAttribute="bottom" id="rgq-JS-RHX"/>
+                                        <constraint firstAttribute="trailing" secondItem="GMF-NT-P6f" secondAttribute="trailing" id="tUh-La-wx4"/>
+                                        <constraint firstItem="GMF-NT-P6f" firstAttribute="top" secondItem="Fd1-EI-VtH" secondAttribute="top" id="ucg-bv-whj"/>
+                                        <constraint firstAttribute="bottom" secondItem="GMF-NT-P6f" secondAttribute="bottom" id="wVP-xe-1aU"/>
+                                        <constraint firstItem="VW4-GT-WCE" firstAttribute="leading" secondItem="Fd1-EI-VtH" secondAttribute="leading" id="xai-wl-3sg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="trackCover" destination="VW4-GT-WCE" id="isl-xs-svS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="SwiftPlayer" id="V6n-Ad-UKZ" userLabel="SwiftPlayer">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nw6-1Z-gGa" userLabel="Reload Data">
+                            <connections>
+                                <action selector="reloadData" destination="BYZ-38-t0r" id="FVn-R0-fFQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="zmA-Mw-MFj" id="9GO-fO-HXf"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1929" y="429"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7BN-5a-6Kp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MWC-GZ-EpR" userLabel="Navigation Controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="czL-mq-Hcj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="taq-cZ-pGC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4i-nw-0mi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="429"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img_play" width="150" height="150"/>
+    </resources>
+</document>
