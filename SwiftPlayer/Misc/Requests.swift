@@ -16,38 +16,21 @@ class Requests {
 extension Requests {
     static func videos (_ uri: String) -> Observable<[Track]>{
         return RxAlamofire.requestJSON(.get, uri)
-            .flatMap{ (response, json) -> Observable<Track?> in
-                return try Observable.from(parseVideoJson(json as? [String: AnyObject]))
-            }
-            .filter { track in
-                guard
-                    let _ = track
-                    else { return false
-                }
-                return true;
-            }
-            .map { $0! }
+            .map{JSON.init($1)}
+            .flatMap{Observable.from($0["tracks"].array!)}
+            .map{try parseTrack(track:$0)}
             .toArray()
+            .map{$0.flatMap{$0}}
             .observeOn(MainScheduler.instance);
     }
     
-    private static func parseVideoJson(_ jsonVal: Any) throws -> [Track?] {
-        let json = JSON(jsonVal)
-        
-        guard
-            let tracks = json["tracks"].array
-            else {
-                throw RequestError.parsing(msg: "Couldn't parse JSON response")
+    private static func parseTrack( track: JSON) throws -> Track? {
+        if let title = track["title"].string,
+            let imagUri = track["imageUri"].string,
+            let videoUri = track["videoUri"].string {
+            return Track(title: title, imageUri: imagUri, videoUri: videoUri)
         }
         
-        return tracks.map { track in
-            if let title = track["title"].string,
-                let imagUri = track["imageUri"].string,
-                let videoUri = track["videoUri"].string {
-                return Track(title: title, imageUri: imagUri, videoUri: videoUri)
-            }
-            
-            return nil
-        }
+        return nil
     }
 }

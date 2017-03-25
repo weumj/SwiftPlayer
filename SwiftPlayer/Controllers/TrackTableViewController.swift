@@ -44,9 +44,9 @@ class TrackTableViewController: UIViewController{
         
         let uri = "http://pastebin.com/raw/Rw6R9D2f"
         Requests.videos(uri)
-            .subscribe(onNext: { tracks in
+            .subscribe(onNext: {
                     self.tracks.removeAll()
-                    self.tracks.append(contentsOf: tracks)
+                    self.tracks.append(contentsOf: $0)
                     self.tableView.reloadData()
                     self.progressHUDfetch.hide()
                 },
@@ -86,12 +86,7 @@ extension TrackTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let track: Track = tracks[indexPath.row]
-            
-            else {
-            fatalError("Could not find track object")
-        }
+        let track: Track = tracks[indexPath.row]
         
         self.progressHUDplayer.show()
         self.tableView.allowsSelection = false
